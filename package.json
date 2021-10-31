@@ -2,7 +2,7 @@
   "name": "react-task-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://ashwindmk.github.io/task-tracker",
+  "homepage": "http://ashwindmk.github.io/reactjs-task-tracker",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
