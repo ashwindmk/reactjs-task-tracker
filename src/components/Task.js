@@ -9,6 +9,7 @@ const Task = ({ task, onDelete, toggleComplete }) => {
                     style={{ color: 'red', cursor: 'pointer' }} 
                     onClick={() => onDelete(task.id)} />
             </h3>
+            <p>{task.text}</p>
             <p>{task.date} {task.time}</p>
         </div>
     );
