@@ -40,7 +40,7 @@ const AddTask = ({ onAdd }) => {
             </div>
             <div className='form-control'>
                 <label>Time</label>
-                <input type='text' placeholder='2:15:00 PM' value={time} onChange={(e) => setTime(e.target.value)} />
+                <input type='text' placeholder='2:15 PM' value={time} onChange={(e) => setTime(e.target.value)} />
             </div>
             <div className='form-control form-control-check'>
                 <label>Complete</label>

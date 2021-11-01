@@ -7,26 +7,10 @@ import Footer from './components/Footer';
 const defaultTasks = [
   {
       id: 1,
-      title: 'Doctor Appointment',
-      text: 'Routine checkup',
+      title: 'Sample Task',
+      text: 'Example',
       date: '5 Feb 2021',
-      time: '2:30:00 PM',
-      complete: false
-  },
-  {
-      id: 2,
-      title: 'School Meeting',
-      text: 'General PTA',
-      date: '6 Feb 2021',
-      time: '2:30:00 PM',
-      complete: false
-  },
-  {
-      id: 3,
-      title: 'Food Shopping',
-      text: 'From Walmart',
-      date: '6 Feb 2021',
-      time: '6:30:00 PM',
+      time: '2:30 PM',
       complete: false
   }
 ];
@@ -39,8 +23,24 @@ function App() {
   const [showAddTask, setShowAddTask] = useState(false);
 
   const addTask = (task) => {
-    const id = tasks.length + 1;
-    const newTask = {id, ...task};
+    let newId = tasks.length + 1;
+    if (newId > 1) {
+      let ids = tasks.map(e => e.id);
+      for (let i = 0; i < ids.length; i++) {
+        let id = Math.abs(ids[i]);
+        if (id <= tasks.length) {
+          ids[id - 1] = -(Math.abs(ids[id - 1]));
+        }
+      }
+      for (let i = 0; i < ids.length; i++) {
+        if (ids[i] > 0) {
+          newId = i + 1;
+          break;
+        }
+      }
+    }
+
+    const newTask = {id: newId, ...task};
     const newTasks = [...tasks, newTask];
     newTasks.sort((t1, t2) => Date.parse(t1.date + ' ' + t1.time) - Date.parse(t2.date + ' ' + t2.time));
     setTasks(newTasks);
@@ -51,7 +51,6 @@ function App() {
     setTasks(() => {
       return tasks.filter((task) => task.id !== id);
     })
-    console.log('Delete', id);
   };
 
   const toggleComplete = (id) => {
@@ -64,7 +63,6 @@ function App() {
         }
       });
     });
-    console.log('Toggle complete', tasks);
   }
 
   useEffect(() => {
